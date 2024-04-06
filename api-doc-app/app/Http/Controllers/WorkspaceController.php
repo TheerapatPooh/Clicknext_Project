@@ -97,11 +97,11 @@ class WorkspaceController extends Controller
 
 
     public function addToCollectionTabs(Request $request, $id) {
+        $collection = Collection::find($id);
         if ($request->session()->has('collection_tabs')) {
             $collection_tabs = $request->session()->get('collection_tabs');
 
             if (!in_array($id, array_column($collection_tabs, 'id'))) {
-                $collection = Collection::find($id);
                 $collection_tabs[] = $collection;
             }  
         } else {
